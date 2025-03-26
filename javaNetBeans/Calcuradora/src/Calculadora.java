@@ -1,18 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author Gabriel
- */
+import java.text.DecimalFormat;
 public class Calculadora extends javax.swing.JFrame {
 
     /**
      * Creates new form Calculadora
      */
-    private int primeiroNumero = 0;
+    private int primeiroNumeroMais = 0;
+    private int primeiroNumeroMenos = 0;
+    private int primeiroNumeroVezes = 0;
+    private double primeiroNumeroDividir = 0;
     private String operacao = "";
     public Calculadora() {
         initComponents();
@@ -49,7 +44,6 @@ public class Calculadora extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(140, 140, 140));
-        setMaximumSize(new java.awt.Dimension(54, 54));
 
         txtDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtDisplay.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +150,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         btnMenos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnMenos.setText("-");
+        btnMenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenosActionPerformed(evt);
+            }
+        });
 
         btnDividir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnDividir.setText("/");
@@ -167,6 +166,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         btnVezes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnVezes.setText("*");
+        btnVezes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVezesActionPerformed(evt);
+            }
+        });
 
         btnIgual.setBackground(new java.awt.Color(10, 128, 158));
         btnIgual.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -299,7 +303,9 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btnDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDividirActionPerformed
-        // TODO add your handling code here:
+        primeiroNumeroDividir = Double.parseDouble(txtDisplay.getText()); 
+        operacao = "/"; 
+        txtDisplay.setText("");
     }//GEN-LAST:event_btnDividirActionPerformed
 
     private void btnPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPontoActionPerformed
@@ -339,21 +345,29 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btnMaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaisActionPerformed
-        primeiroNumero = Integer.parseInt(txtDisplay.getText()); // Armazena o número atual
-        operacao = "+"; // Define a operação
+        primeiroNumeroMais = Integer.parseInt(txtDisplay.getText()); 
+        operacao = "+"; 
         txtDisplay.setText("");
     }//GEN-LAST:event_btnMaisActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
-        int segundoNumero = Integer.parseInt(txtDisplay.getText()); // Obtém o segundo número
-        int resultado = 0;
-    
-    // Verifica qual operação foi escolhida
+        int segundoNumero = Integer.parseInt(txtDisplay.getText());
+        double resultado = 0;
         if (operacao.equals("+")) {
-            resultado = primeiroNumero + segundoNumero;
+            resultado = primeiroNumeroMais + segundoNumero;
+        }else if(operacao.equals("-")){
+            resultado = primeiroNumeroMenos - segundoNumero;
+        }else if(operacao.equals("*")){
+            resultado = primeiroNumeroVezes * segundoNumero;
+        }else if(operacao.equals("/")){
+            resultado = primeiroNumeroDividir / (double) segundoNumero;
         }
-    
-        txtDisplay.setText(String.valueOf(resultado));
+        
+         if (resultado % 1 == 0) {
+        txtDisplay.setText(String.valueOf((int) resultado));
+        } else {
+        txtDisplay.setText(String.valueOf(resultado)); 
+        }
     }//GEN-LAST:event_btnIgualActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -361,12 +375,24 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnClear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear1ActionPerformed
-        // TODO add your handling code here:
+        txtDisplay.setText("");
     }//GEN-LAST:event_btnClear1ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
-        // TODO add your handling code here:
+        txtDisplay.setText(txtDisplay.getText() + "0");
     }//GEN-LAST:event_btn0ActionPerformed
+
+    private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
+        primeiroNumeroMenos = Integer.parseInt(txtDisplay.getText()); 
+        operacao = "-"; 
+        txtDisplay.setText("");
+    }//GEN-LAST:event_btnMenosActionPerformed
+
+    private void btnVezesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVezesActionPerformed
+        primeiroNumeroVezes = Integer.parseInt(txtDisplay.getText()); 
+        operacao = "*"; 
+        txtDisplay.setText("");
+    }//GEN-LAST:event_btnVezesActionPerformed
 
     /**
      * @param args the command line arguments
