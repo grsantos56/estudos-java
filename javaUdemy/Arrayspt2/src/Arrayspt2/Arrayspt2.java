@@ -9,14 +9,15 @@ public class Arrayspt2 {
 		
 		Produto vetor[] = new Produto[escolha];
 		
+		/*
 		Produto vet[] = new Produto[3];
 		vet[0] = new Produto("acucar", 4.50);
 		vet[1] = new Produto("sal", 1.50);
 		vet[2] = new Produto("alho", 2.00);
 		
 		System.out.println(vet[0].getNome());
-		
-		for(int i=0; i < escolha; i++) {
+		*/
+		for(int i=0; i < vetor.length; i++) {
 			entrada.nextLine();
 			String nome = entrada.nextLine();
 			double preco = entrada.nextDouble();
@@ -24,10 +25,10 @@ public class Arrayspt2 {
 			vetor[i] = new Produto(nome, preco);
 		}
 		double soma = 0;
-		for(int i=0; i<escolha; i++) {
+		for(int i=0; i<vetor.length; i++) {
 			soma += vetor[i].getPrice();
 		}
-		double media = soma/escolha;
+		double media = soma/vetor.length;
 		
 		System.out.printf("a media dos precos foi de %f", media);
 	}
