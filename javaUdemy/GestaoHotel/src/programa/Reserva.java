@@ -26,9 +26,18 @@ public class Reserva {
 		return TimeUnit.DAYS.convert(duracaoMilisegundos, TimeUnit.MILLISECONDS) ;
 	}
 	
-	public void atualizarData(Date chekin, Date checkout) {
-		this.chekin = chekin;
-		this.checkout = checkout;
+	public String atualizarData(Date chekin, Date checkout) {
+		Date dataAtual = new Date();
+		if(chekin.before(dataAtual) || checkout.before(dataAtual)) {
+			return "voce deve atualiazar para datas futuras! ";
+		}if(!checkout.after(chekin)) {
+			return "data incorreta! ";
+		}
+		else {
+			this.chekin = chekin;
+			this.checkout = checkout;
+			return null;
+		}
 	}
 
 	public Integer getNumeroQuarto() {

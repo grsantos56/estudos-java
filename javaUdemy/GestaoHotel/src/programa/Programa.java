@@ -30,15 +30,14 @@ public class Programa {
 			System.out.println("data do checkout: ");
 			checkout = dataFormatada.parse(entrada.next());
 			
-			Date dataAtual = new Date();
-			if(dataAtual.before(chekin) || dataAtual.before(checkout)) {
-				System.out.println("voce deve atualiazar para datas futuras! ");
-			}else if(!checkout.after(chekin)) {
-				System.out.println("data incorreta! ");
-			}else{
-				reserva.atualizarData(chekin, checkout);
+			String erro = reserva.atualizarData(chekin, checkout);
+			if(erro != null){
+				System.out.println("erro ao reservar: " + erro);
+			}else {
 				System.out.println(reserva);
 			}
+			
+			entrada.close();
 			
 		}
 	}
