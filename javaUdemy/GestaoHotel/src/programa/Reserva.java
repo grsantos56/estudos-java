@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class Reserva {
+public class Reserva{
 	private Integer numeroQuarto;
 	private Date chekin;
 	private Date checkout;
@@ -15,10 +15,14 @@ public class Reserva {
 		
 	}
 	
-	public Reserva(Integer numeroQuarto, Date chekin, Date checkout) {
-		this.numeroQuarto = numeroQuarto;
-		this.chekin = chekin;
-		this.checkout = checkout;
+	public Reserva(Integer numeroQuarto, Date chekin, Date checkout) throws Excecoes {
+		if(!checkout.after(chekin)) {
+			throw new Excecoes("data incorreta! ");
+		}else {
+			this.numeroQuarto = numeroQuarto;
+			this.chekin = chekin;
+			this.checkout = checkout;
+		}
 	}
 	
 	public long duracao() {
@@ -26,17 +30,16 @@ public class Reserva {
 		return TimeUnit.DAYS.convert(duracaoMilisegundos, TimeUnit.MILLISECONDS) ;
 	}
 	
-	public String atualizarData(Date chekin, Date checkout) {
+	public void atualizarData(Date chekin, Date checkout) throws Excecoes{
 		Date dataAtual = new Date();
 		if(chekin.before(dataAtual) || checkout.before(dataAtual)) {
-			return "voce deve atualiazar para datas futuras! ";
+			throw new Excecoes("voce deve atualiazar para datas futuras! ");
 		}if(!checkout.after(chekin)) {
-			return "data incorreta! ";
+			throw new Excecoes("data incorreta! ");
 		}
 		else {
 			this.chekin = chekin;
 			this.checkout = checkout;
-			return null;
 		}
 	}
 

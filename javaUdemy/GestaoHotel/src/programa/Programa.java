@@ -1,6 +1,7 @@
 package programa;
 
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,16 +12,14 @@ public class Programa {
 		Scanner entrada = new Scanner(System.in);
 		SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
 		
-		System.out.println("numero do quarto: ");
-		int numeroQuarto = entrada.nextInt();
-		System.out.println("data do chekin: [dd/mm/yyyy]");
-		Date chekin = dataFormatada.parse(entrada.next());
-		System.out.println("data do checkout: ");
-		Date checkout = dataFormatada.parse(entrada.next());
-		
-		if(!checkout.after(chekin)) {
-			System.out.println("data incorreta! ");
-		}else {
+		try {
+			System.out.println("numero do quarto: ");
+			int numeroQuarto = entrada.nextInt();
+			System.out.println("data do chekin: [dd/mm/yyyy]");
+			Date chekin = dataFormatada.parse(entrada.next());
+			System.out.println("data do checkout: ");
+			Date checkout = dataFormatada.parse(entrada.next());
+
 			Reserva reserva = new Reserva(numeroQuarto, chekin, checkout);
 			System.out.println(reserva);
 			
@@ -30,16 +29,21 @@ public class Programa {
 			System.out.println("data do checkout: ");
 			checkout = dataFormatada.parse(entrada.next());
 			
-			String erro = reserva.atualizarData(chekin, checkout);
-			if(erro != null){
-				System.out.println("erro ao reservar: " + erro);
-			}else {
-				System.out.println(reserva);
-			}
-			
+			reserva.atualizarData(chekin, checkout);
+			System.out.println("erro ao reservar: " + reserva);
+
+		}catch(ParseException excecao) {
+			System.out.println("formato de data invalido! ");
+		}catch(Excecoes excecao) {
+			System.out.println("erro ao reservar: " + excecao.getMessage());
+		}catch(InputMismatchException excecao) {
+			System.out.println("o campo aceita apena números! ");
+		}catch(RuntimeException excecao) {
+			System.out.println("erro inesperado! ");
+		}
 			entrada.close();
 			
-		}
+		
 	}
 
 }
