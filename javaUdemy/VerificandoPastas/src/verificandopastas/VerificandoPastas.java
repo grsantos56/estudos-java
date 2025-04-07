@@ -28,6 +28,11 @@ public class VerificandoPastas {
 		boolean sucesso = new File(caminho + "\\criado com java").mkdir();
 		System.out.println("criado: " + sucesso);
 		
+		
+		System.out.println("nome: " + pasta.getName());
+		System.out.println("caminho: " + pasta.getParent());
+		System.out.println("caminho completo: " + pasta.getPath());
+		
 		entrada.close();
 		
 	}
