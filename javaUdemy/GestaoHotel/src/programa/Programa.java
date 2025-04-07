@@ -42,8 +42,7 @@ public class Programa {
 			System.out.println("erro inesperado! ");
 		}
 			entrada.close();
-			
-		
+				
 	}
 
 }
