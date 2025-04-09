@@ -21,7 +21,15 @@ public class ProgramaPrincipal {
 		System.out.println("valor do contrato: ");
 		double valorTotal = entrada.nextDouble();
 		
-		Contrato contrato = new Contrato(numeroVeiculo, data, valorTotal);
+		Contrato obj = new Contrato(numeroVeiculo, data, valorTotal);
+		ServicoContrato contrato = new ServicoContrato(null);
+		contrato.ProcessoDePagamento(obj, numeroVeiculo);
+		
+		System.out.println("parcelas: ");
+		
+		for(Parcela parcela: obj.getParcelas()) {
+			System.out.println(parcela);
+		}
 		
 		entrada.close();
 	}

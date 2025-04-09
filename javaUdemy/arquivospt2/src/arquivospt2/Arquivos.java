@@ -7,12 +7,7 @@ import java.io.BufferedReader;
 public class Arquivos {
 	public static void main(String[] args) {
 		String caminho = "C:\\Users\\Gabriel\\Desktop\\projetos.txt";
-		FileReader fr = null;
-		BufferedReader br = null;
-		
-		try {
-			fr = new FileReader(caminho);
-			br = new BufferedReader(fr);
+		try (BufferedReader br = new BufferedReader(new FileReader(caminho))){
 			
 			String linha = br.readLine();
 			while(linha != null) {
@@ -21,16 +16,6 @@ public class Arquivos {
 			}
 		}catch(IOException excecao) {
 			System.out.println("erro!: " + excecao.getMessage());
-		}finally {
-			try {
-				if(fr != null) {
-					fr.close();
-				}if(br != null) {
-					br.close();
-				}
-			}catch(IOException excecao){
-				excecao.printStackTrace();
-			}
 		}
 	}
 }
