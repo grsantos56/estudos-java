@@ -21,11 +21,14 @@ public class ProgramaPrincipal {
 		System.out.println("valor do contrato: ");
 		double valorTotal = entrada.nextDouble();
 		
-		Contrato obj = new Contrato(numeroVeiculo, data, valorTotal);
-		ServicoContrato contrato = new ServicoContrato(null);
-		contrato.ProcessoDePagamento(obj, numeroVeiculo);
-		
 		System.out.println("parcelas: ");
+		int qtdParcelas = entrada.nextInt();
+		
+		Contrato obj = new Contrato(numeroVeiculo, data, valorTotal);
+		ServicoContrato contrato = new ServicoContrato(new PagamentoPaypal());
+		contrato.ProcessoDePagamento(obj, qtdParcelas);
+		
+		
 		
 		for(Parcela parcela: obj.getParcelas()) {
 			System.out.println(parcela);
