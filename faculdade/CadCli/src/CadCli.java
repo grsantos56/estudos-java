@@ -2,9 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CadCli {
-
     public static void main(String[] args) {
-    	ArrayList<Cliente> clientes = new ArrayList<>();
+        ArrayList<Cliente> clientes = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         String opcao;
 
@@ -19,17 +18,8 @@ public class CadCli {
 
             switch (opcao) {
                 case "c":
-                    Cliente novo = new Cliente();
-                    System.out.print("Digite o CPF (11 dígitos): ");
-                    while (!novo.setCpf(scanner.nextLine()));
-
-                    System.out.print("Digite o nome: ");
-                    while (!novo.setNome(scanner.nextLine()));
-
-                    System.out.print("Digite a idade: ");
-                    while (!novo.setIdade(Integer.parseInt(scanner.nextLine())));
-
-                    clientes.add(novo);
+                    Cliente novoCliente = CadastrarCliente.cadastrarCliente(scanner);
+                    clientes.add(novoCliente);
                     System.out.println("Cliente cadastrado com sucesso!");
                     break;
 
@@ -74,10 +64,22 @@ public class CadCli {
 
                     if (clienteEditar != null) {
                         System.out.print("Novo nome: ");
-                        while (!clienteEditar.setNome(scanner.nextLine()));
+                        while (!clienteEditar.setNome(scanner.nextLine())) {
+                            System.out.print("Digite o nome novamente: ");
+                        }
 
                         System.out.print("Nova idade: ");
-                        while (!clienteEditar.setIdade(Integer.parseInt(scanner.nextLine())));
+                        while (true) {
+                            try {
+                                int idade = Integer.parseInt(scanner.nextLine());
+                                if (clienteEditar.setIdade(idade)) {
+                                    break;
+                                }
+                            } catch (NumberFormatException e) {
+                                System.out.println("Idade inválida! Digite um número.");
+                            }
+                            System.out.print("Digite a idade novamente: ");
+                        }
 
                         System.out.println("Dados atualizados com sucesso!");
                     } else {
@@ -94,7 +96,7 @@ public class CadCli {
             }
 
         } while (!opcao.equals("s"));
+
         scanner.close();
     }
-    
 }
