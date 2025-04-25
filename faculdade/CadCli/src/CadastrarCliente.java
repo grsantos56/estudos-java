@@ -1,6 +1,19 @@
 import java.util.Scanner;
 
+/**
+ * Classe utilitária para cadastrar um novo cliente.
+ * 
+ * @author Gabriel Rodrigues dos Santos
+ */
 public class CadastrarCliente {
+
+    /**
+     * Cria um cliente novo pedindo os dados via terminal.
+     * Usa os métodos de validação do Cliente.
+     * 
+     * @param scanner objeto Scanner para entrada do usuário.
+     * @return objeto Cliente criado.
+     */
     public static Cliente cadastrarCliente(Scanner scanner) {
         Cliente novo = new Cliente();
 

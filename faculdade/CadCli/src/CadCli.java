@@ -1,7 +1,18 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe principal com o método main.
+ * Controla o menu de cadastro, listagem, busca e edição de clientes.
+ * 
+ * @author Gabriel Rodrigues dos Santos
+ */
 public class CadCli {
+    /**
+     * Método principal que executa o menu do programa.
+     * 
+     * @param args argumentos da linha de comando (não utilizados).
+     */
     public static void main(String[] args) {
         ArrayList<Cliente> clientes = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -21,6 +32,8 @@ public class CadCli {
                     Cliente novoCliente = CadastrarCliente.cadastrarCliente(scanner);
                     clientes.add(novoCliente);
                     System.out.println("Cliente cadastrado com sucesso!");
+                    System.out.println("Dados do cliente:");
+                    novoCliente.descricao(); // Exibir logo após cadastro
                     break;
 
                 case "l":
