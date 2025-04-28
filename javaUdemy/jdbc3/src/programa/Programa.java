@@ -18,17 +18,9 @@ public class Programa {
 		try {
 			con = DB.getConnection();
 			ps = con.prepareStatement(
-					"insert into seller" +
-					"(Name, Email, BirthDate, BaseSalary, DepartmentId)" +
-					"values" +
-					"(?, ?, ?, ?, ?)",
+					"insert into department (Name) values ('d1'),('d2')",
 					Statement.RETURN_GENERATED_KEYS
 					);
-			ps.setString(1, "Paula Nakama");
-			ps.setString(2, "paulanakama@gmail.com");
-			ps.setDate(3, new java.sql.Date(sdf.parse("22/04/2001").getTime()));
-			ps.setDouble(4, 2949.90);
-			ps.setInt(5, 3);
 			
 			int linhasAfetadas = ps.executeUpdate();
 			if(linhasAfetadas > 0) {
@@ -42,8 +34,6 @@ public class Programa {
 			}
 			
 		}catch(SQLException e){
-			e.printStackTrace();
-		}catch(ParseException e) {
 			e.printStackTrace();
 		}finally {
 			DB.closeStatment(ps);
