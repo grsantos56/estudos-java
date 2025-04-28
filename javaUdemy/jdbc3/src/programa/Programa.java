@@ -35,7 +35,7 @@ public class Programa {
 				ResultSet rs =  ps.getGeneratedKeys();
 				while(rs.next()) {
 					int id = rs.getInt(1);
-					System.out.println("sucesso, linhas afetadas: " + linhasAfetadas + "id:" + id);
+					System.out.println("sucesso, linhas afetadas: " + linhasAfetadas + " id: " + id);
 				}
 			}else {
 				System.out.println("nenhuma linha alterada");
