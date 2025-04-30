@@ -18,7 +18,7 @@ public class Programa {
 					"where " +
 					"Id = ?"
 					);
-			st.setInt(1, 2);
+			st.setInt(1, 5);
 			
 			int linhasAfetadas = st.executeUpdate();
 			System.out.println("sucesso! linhas afetadas: " + linhasAfetadas);
