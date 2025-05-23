@@ -20,25 +20,3 @@
 /javaNetBeans/CdeDvd/build/
 /.metadata/
 
-*.java
-!faculdade/
-!javaNetBeans/Calculadora
-!javaNetBeans/Heranca
-!javaNetBeans/Metodos
-!javaNetBeans/Polimorfismo
-!javaNetBeans/Interface
-!javaNetBeans/Vetores
-!javaUdemy/Datas
-!javaUdemy/EscrevendoArquivos
-!javaUdemy/Foreach
-!javaUdemy/Listas
-!javaUdemy/MapJava
-!javaUdemy/Predicado
-!javaUdemy/Set
-!javaUdemy/Strams
-!javaUdemy/TryCatch
-!javaUdemy/arquivospt2
-!javaUdemy/PrimeiroJdbc
-!javaUdemy/jdbc3
-!javaUdemy/jdbc5
-!javaUdemy/jdbc7
